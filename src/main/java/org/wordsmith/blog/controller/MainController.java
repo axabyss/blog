@@ -5,6 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/**
+ * 主页控制器
+ * @author Wordsmith
+ *
+ */
 @Controller
 public class MainController {
 

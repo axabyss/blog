@@ -1,36 +1,24 @@
 package org.wordsmith.blog.repository;
 
-import java.util.List;
-
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.wordsmith.blog.domain.User;
 
-public interface UserRepository extends CrudRepository<User, Long>{
+public interface UserRepository extends JpaRepository<User, Long>{
 	
-/*	*/ /**
-	 * 创建或修改用户
-	 * @param user
+	/**
+	 * 根据用户名分页查询用户列表
+	 * @param name
+	 * @param pageable
 	 * @return
-	 *//*
-	User saveOrUpdateUser(User user);
+	 */
+	Page<User> findByNameLike(String name, Pageable pageable);
 	
-	*//**
-	 * 删除用户 
-	 * @param id
-	 *//*
-	void deleteUser(Long id);
-	
-	*//**
-	 * 根据id查询用户
-	 * @param id
+	/**
+	 * 根据用户账号查询用户
+	 * @param username
 	 * @return
-	 *//*
-	User getUserById(Long id);
-	
-	*//**
-	 * 获取用户列表
-	 * @return
-	 *//*
-	List<User> listUsers(); */
-	 
+	 */
+	User findByUsername(String username);
 }
