@@ -1,11 +1,9 @@
-
-
 <div class="card-header bg-dark font-white">
 
 	<div class="input-group col-md-7 col-xl-6">
 
 		<input type="text" class="form-control" id="searchName"
-			placeholder="输入用户名称进行搜索"> <span class="input-group-btn">
+			placeholder="杈撳叆鐢ㄦ埛鍚嶇О杩涜鎼滅储"> <span class="input-group-btn">
 			<button class="btn btn-secondary" type="button" id="searchNameBtn">
 				<i class="fa fa-search" aria-hidden="true"></i>
 			</button>
@@ -22,12 +20,11 @@
 			<thead>
 				<tr>
 					<th data-field="id">ID</th>
-					<th data-field="username">账号</th>
-					<th data-field="name">姓名</th>
-					<th data-field="email">邮箱</th>
-					<th data-field="authorities">角色</th>
-					<th data-field="operation">操作</th>
-
+					<th data-field="username">璐﹀彿</th>
+					<th data-field="name">濮撳悕</th>
+					<th data-field="email">閭</th>
+					<!-- <th data-field="authorities">瑙掕壊</th> -->
+					<th data-field="operation">鎿嶄綔</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -37,7 +34,7 @@
 					<td th:text="${user.username}">1</td>
 					<td th:text="${user.name}">waylau</td>
 					<td th:text="${user.email}">waylau</td>
-					<td th:text="${user.authorities}">waylau</td>
+					<!-- <td th:text="${user.authorities}">waylau</td> -->
 					<td>
 						<div>
 							<a class="blog-edit-user" data-toggle="modal"
@@ -55,7 +52,7 @@
 			</tbody>
 
 		</table>
-		<div th:replace="~{fragments/page :: page}">...</div>
+		<!-- <div th:replace="~{fragments/page :: page}">...</div> -->
 
 	</div>
 </div>
@@ -66,7 +63,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="modalLabel">新增/编辑</h4>
+				<h4 class="modal-title" id="modalLabel">鏂板/缂栬緫</h4>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -75,7 +72,7 @@
 			</div>
 			<div class="modal-body" id="userFormContainer"></div>
 			<div class="modal-footer">
-				<button class="btn btn-primary" data-dismiss="modal" id="submitEdit">提交</button>
+				<button class="btn btn-primary" data-dismiss="modal" id="submitEdit">鎻愪氦</button>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 		</div>
