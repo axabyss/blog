@@ -71,12 +71,14 @@ $(function() {
 	
 	// 提交变更后，清空表单
 	$("#submitEdit").click(function() {
+		console.log("1");
 		$.ajax({ 
-			 url: "/users", 
+			 url: "/users/submit", 
 			 type: 'POST',
 			 data:$('#userForm').serialize(),
 			 success: function(data){
 				 $('#userForm')[0].reset();
+				 getUersByName(0, _pageSize);
 				 if (data.success) {
 					 console.log("2");
 					 // 从新刷新主界面

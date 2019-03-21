@@ -167,7 +167,17 @@ public class UserController {
 	 * 查询所用用户
 	 * @return
 	 */
+	
 	@GetMapping
+	public ModelAndView userRoot() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/users/list");// 重定向至list映射方法
+		return mav;
+	}
+	
+	
+	
+	@GetMapping("/list")
 	public ModelAndView list(@RequestParam(value="async",required=false) boolean async,
 			@RequestParam(value="pageIndex",required=false,defaultValue="0") int pageIndex,
 			@RequestParam(value="pageSize",required=false,defaultValue="10") int pageSize,
@@ -180,6 +190,7 @@ public class UserController {
 		
 		model.addAttribute("page", page);
 		model.addAttribute("userList", list);
+		System.out.println("124");
 		return new ModelAndView(async==true?"users/list :: #mainContainerRepleace":"users/list", "userModel", model);
 	}
 
@@ -213,6 +224,15 @@ public class UserController {
 	public ModelAndView createForm(Model model) {
 		model.addAttribute("user", new User(null, null, null, null));
 		return new ModelAndView("users/add", "userModel", model);
+	}
+	
+	@PostMapping("/submit")
+	public ModelAndView saveOrUpdateUser(User user) {
+		user = userRepository.save(user);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/users/list");// 重定向至list映射方法
+		System.out.println("123");
+		return mav;
 	}
 
 	/**
