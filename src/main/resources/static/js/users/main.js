@@ -25,6 +25,7 @@ $(function() {
 			 },
 			 success: function(data){
 				 $("#mainContainer").html(data);
+//				 $("#contentContainer").html(data);
 		     },
 		     error : function() {
 		    	 toastr.error("error!");
@@ -73,7 +74,7 @@ $(function() {
 	$("#submitEdit").click(function() {
 		console.log("1");
 		$.ajax({ 
-			 url: "/users/submit", 
+			 url: "/users", 
 			 type: 'POST',
 			 data:$('#userForm').serialize(),
 			 success: function(data){
@@ -97,9 +98,10 @@ $(function() {
 	// 删除用户
 	$("#rightContainer").on("click",".blog-delete-user", function () { 
 		// 获取 CSRF Token 
+		console.log('哈哈')
 		var csrfToken = $("meta[name='_csrf']").attr("content");
 		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-		
+		console.log('停了'+csrfToken+'***'+csrfHeader)
 		
 		$.ajax({ 
 			 url: "/users/" + $(this).attr("userId") , 
