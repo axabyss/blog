@@ -3,7 +3,10 @@ package org.wordsmith.blog.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +15,8 @@ import org.wordsmith.blog.domain.Authority;
 import org.wordsmith.blog.domain.User;
 import org.wordsmith.blog.service.AuthorityService;
 import org.wordsmith.blog.service.UserService;
+import org.wordsmith.blog.util.ConstraintViolationExceptionHandler;
+import org.wordsmith.blog.vo.Response;
 
 /**
  * 主页控制器
@@ -36,7 +41,7 @@ private static final Long ROLE_USER_AUTHORITY_ID = 2L;
 	
 	@GetMapping("/index")
 	public String index() {
-		return "index";
+		return "redirect:/blogs";
 	}
 
 	/**
@@ -67,13 +72,26 @@ private static final Long ROLE_USER_AUTHORITY_ID = 2L;
 	 * @param redirect
 	 * @return
 	 */
+//	@PostMapping("/register")
+//	public String registerUser(User user) {
+//		List<Authority> authorities = new ArrayList<>();
+//		authorities.add(authorityService.getAuthorityById(ROLE_USER_AUTHORITY_ID));
+//		user.setAuthorities(authorities);
+//		userService.registerUser(user);
+//		return "redirect:/login";
+//	}
 	@PostMapping("/register")
-	public String registerUser(User user) {
+	public ResponseEntity<Response> registerUser(User user) {
 		List<Authority> authorities = new ArrayList<>();
 		authorities.add(authorityService.getAuthorityById(ROLE_USER_AUTHORITY_ID));
 		user.setAuthorities(authorities);
-		userService.registerUser(user);
-		return "redirect:/login";
+		try {
+			userService.registerUser(user);
+		}  catch (ConstraintViolationException e)  {
+			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
+		}
+		
+		return ResponseEntity.ok().body(new Response(true, "处理成功", user));
 	}
 	
 	@GetMapping("/search")

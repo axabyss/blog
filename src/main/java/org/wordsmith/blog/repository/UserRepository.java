@@ -1,5 +1,8 @@
 package org.wordsmith.blog.repository;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,4 +24,11 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	 * @return
 	 */
 	User findByUsername(String username);
+
+	/**
+	 * 根据名称列表查询用户列表
+	 * @param usernames
+	 * @return
+	 */
+	List<User> findByUsernameIn(Collection<String> usernames);
 }

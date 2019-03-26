@@ -72,7 +72,6 @@ $(function() {
 	
 	// 提交变更后，清空表单
 	$("#submitEdit").click(function() {
-		console.log("1");
 		$.ajax({ 
 			 url: "/users", 
 			 type: 'POST',
@@ -81,11 +80,9 @@ $(function() {
 				 $('#userForm')[0].reset();
 				 getUersByName(0, _pageSize);
 				 if (data.success) {
-					 console.log("2");
-					 // 从新刷新主界面
+					 // 重新刷新主界面
 					 getUersByName(0, _pageSize);
 				 } else {
-					 console.log("3");
 					 toastr.error(data.message);
 				 }
 		     },

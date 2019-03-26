@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -164,20 +165,20 @@ public class UserController {
 		return ResponseEntity.ok().body(new Response(true, "处理成功", user));
 	}
 
-//	/**
-//	 * 删除用户
-//	 * @param id
-//	 * @return
-//	 */
-//	@DeleteMapping(value = "/{id}")
-//    public ResponseEntity<Response> delete(@PathVariable("id") Long id, Model model) {
-//		try {
-//			userService.removeUser(id);
-//		} catch (Exception e) {
-//			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
-//		}
-//		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
-//	}
+	/**
+	 * 删除用户
+	 * @param id
+	 * @return
+	 */
+	@DeleteMapping(value = "/{id}")
+    public ResponseEntity<Response> delete(@PathVariable("id") Long id, Model model) {
+		try {
+			userService.removeUser(id);
+		} catch (Exception e) {
+			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
+		}
+		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
+	}
 	
 	/**
 	 * 获取修改用户的界面，及数据

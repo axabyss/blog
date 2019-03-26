@@ -49,4 +49,7 @@ dependencies {
     
     // 添加  Apache Commons Lang 依赖
 	compile 'org.apache.commons:commons-lang3:3.8'
+	
+	// 添加 Markdown parser 依赖
+	compile 'es.nitaur.markdown:txtmark:0.16'
 }
